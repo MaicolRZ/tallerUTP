@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 
 import pe.edu.universidad.dao.DaoCliente;
 import pe.edu.universidad.dto.DtoAtencionTaller;
+import pe.edu.universidad.dto.DtoAtencionTallerCotizacion;
 
 
 /**
@@ -34,6 +35,15 @@ public class EJBAtencionTaller {
     	lst = dao2.consultarPersonaporID(id_cliente);
     	return lst;
     }
+	
+	public List<DtoAtencionTallerCotizacion> AtencionTallerCotizacion(String id_cliente) {
+    	List<DtoAtencionTallerCotizacion> lst = null;
+    	DaoCliente dao2 = new DaoCliente();
+    	lst = dao2.AtencionTallerCotizacion(id_cliente);
+    	return lst;
+    }
+	
+	
 	public List<DtoAtencionTaller> imprimirPDF(String id_elec) {
     	List<DtoAtencionTaller> lst = null;
     	DaoCliente dao2 = new DaoCliente();

@@ -110,6 +110,8 @@ Cliente p=(Cliente)dao2.lista(dni);
 											<td><c:out value="${e.descripcion}"></c:out></td>
 											
 											
+											
+											
 						
 											<!-- Editar-->
 											<td> 
@@ -148,34 +150,29 @@ Cliente p=(Cliente)dao2.lista(dni);
 				<th>Direccion</th>
 			</tr>
 			</thead>
-			<c:forEach items="${applicationScope.lstUsuarios}" var="usu">
+			<c:forEach items="${applicationScope.LstSesion}" var="ses">
 			<tbody>
 			<tr>
-				<td><c:out value="${usu.id}"></c:out></td>
-				<td><c:out value="${usu.nombre}"></c:out></td>
-				<td><c:out value="${usu.apell_pat}"></c:out></td>
-				<td><c:out value="${usu.apell_mat}"></c:out></td>
-				<td><c:out value="${usu.direccion}"></c:out></td>
+				<td><c:out value="${ses.nombresCompleto}"></c:out></td>
+				
 				
 			</tr>
-			</tbody>
+			
 		</c:forEach>
-		<c:forEach items="${lstServiciosTecnico}" var="e">
-											
-											<td><c:out value="${e.id_elec}"></c:out></td>
-											
-											
-						
-											<!-- Editar-->
-											<td>
-											
-											<a href=""  class=" btn-raised btn-xs" >
-											<button>
-											<i class="zmdi zmdi-edit"></i>
-											</button>
-											</a>
-											</td>
-											</c:forEach>
+		
+		
+													</tbody>
+		</table>
+		
+		<table  id="ejemplo" class="table table.bordered table-hover" border="1">
+			<thead>
+			<tr>
+				<th>Correo</th>
+				<th>clave</th>
+				
+			</tr>
+			</thead>
+			
 		</table>
 		<form action="<%=request.getContextPath() %>/Prueba" method="post">
 		<div class="form-group label-floating">
@@ -190,9 +187,10 @@ Cliente p=(Cliente)dao2.lista(dni);
 											  <label class="control-label">Apellidos Cliente</label>
 											  <input class="form-control" type="text" name ="nombre"value="<%=p.getApell_pat()%> <%=p.getApell_mat()%>" required>
 											</div>
+											
 											<div class="form-group label-floating">
 											  <label class="control-label">Modelo</label>
-											  <input class="form-control" type="text" name ="nombre" required>
+											  <input class="form-control" type="text" name ="nombre" value="" required>
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Nombre</label>
@@ -201,8 +199,8 @@ Cliente p=(Cliente)dao2.lista(dni);
 		<div class="form-group">
 		<label class="control-label">Tecnico</label>
 		<select class="form-control" name="tecnico_id">
-		<c:forEach items="${applicationScope.lstUsuarios}" var="usu">
-		<option value="${usu.id}">${usu.nombre} ${usu.apell_pat} ${usu.apell_mat}</option>
+		<c:forEach items="${applicationScope.lstSesion}" var="usu">
+		<option value="">${usu.nombresCompleto}</option>
 
 		</c:forEach>
 		</select>

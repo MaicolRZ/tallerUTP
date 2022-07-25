@@ -25,7 +25,9 @@
 	<tr>
 	<td>Numero Serie: </td><td> <input type="text" name="numero_Serie"> </td>
 	</tr>
-	
+	<tr>
+	<td>Descripcion: </td><td> <input type="text" name="descripcion"> </td>
+	</tr>
 	</table>
 </form>	
 </body>

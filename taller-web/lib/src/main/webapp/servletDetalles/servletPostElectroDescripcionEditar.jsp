@@ -73,13 +73,13 @@
 											  <input class="form-control" type="text" name ="descripcion" required>
 											</div>
 											<div class="form-group">
-											<label class="control-label">Tecnico</label>
-												<select class="form-control" name="id_tecnico">
-												<c:forEach items="${applicationScope.lstUsuarios}" var="usu">
-												<option value="${usu.id}">${usu.nombre} ${usu.apell_pat} ${usu.apell_mat}</option>
-
-												</c:forEach>
-											</select>
+											<div class="form-group label-floating">
+											  <label class="control-label">Tecnico</label>
+											  <input class="form-control" type="text" name ="id_tecnico" value="${LstTecnico}" readonly required>
+											</div>
+											
+											
+											
 		
 		</div>
 									    	

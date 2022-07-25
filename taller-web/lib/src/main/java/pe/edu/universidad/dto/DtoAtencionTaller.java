@@ -1,6 +1,8 @@
 package pe.edu.universidad.dto;
 
-public class DtoAtencionTaller {
+import java.io.Serializable;
+
+public class DtoAtencionTaller implements Serializable{
 	String dni_persona;
 	String id_electro;
 	String nombresCompleto;

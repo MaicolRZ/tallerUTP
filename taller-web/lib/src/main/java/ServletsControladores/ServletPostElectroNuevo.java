@@ -25,12 +25,14 @@ public ServletPostElectroNuevo() {
 		String marca=request.getParameter("marca");
 		String modelo=request.getParameter("modelo");
 		String n_serie=request.getParameter("numero_Serie");
+		
 
 		
 		
 
 		DaoElectro dao = new DaoElectro();
-		dao.insertarElectro(dni,tipo,marca,modelo,n_serie );
+		dao.insertarElectro(dni,tipo,marca,modelo,n_serie);
+		
 		
 		RequestDispatcher rd;
 		rd=request.getRequestDispatcher("atencionTaller.jsp");

@@ -21,7 +21,9 @@
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
 					<img src="./assets/img/avatar.jpg" alt="UserIcon">
-					<figcaption class="text-center text-titles">User Name</figcaption>
+					<figcaption class="text-center text-titles">${lstNombresCompletos}</figcaption>
+					<figcaption class="text-center text-titles">${LstAdmin}</figcaption>
+					<figcaption class="text-center text-titles">Administrador</figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
 					<li>
@@ -30,7 +32,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="index.jsp" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -50,16 +52,16 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="period.html"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Horarios</a>
+							<a href="paginaEncargado/horarios.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Horarios</a>
 						</li>
 						<li>
 							<a href="subject.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Servicios</a>
 						</li>
 						<li>
-							<a href="atencion_domicilio.jsp"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Visitas Domicilio</a>
+							<a href="atencion_domicilio.jsp"><i class="zmdi zmdi-home zmdi-hc-fw"></i> Visitas Domicilio</a>
 						</li>
 						<li>
-							<a href="electrodomestico.jsp"><i class="zmdi zmdi-font zmdi-hc-fw"></i> Electrodomesticos</a>
+							<a href="electrodomestico.jsp"><i class="zmdi zmdi-receipt zmdi-hc-fw"></i> Electrodomesticos</a>
 						</li>
 					</ul>
 				</li>
@@ -88,10 +90,10 @@
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="paginaEncargado/reporteTecnico.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Reportes Tecnico</a>
+							<a href="Reportes/reporteTecnico.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Reportes Tecnico</a>
 						</li>
 						<li>
-							<a href="paginaEncargado/reporteCliente.jsp"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Reportes Cliente</a>
+							<a href="Reportes/reporteCliente.jsp"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Reportes Cliente</a>
 						</li>
 						
 					</ul>
@@ -108,6 +110,7 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
+				
 				<li>
 					<a href="#!" class="btn-Notifications-area">
 						<i class="zmdi zmdi-notifications-none"></i>

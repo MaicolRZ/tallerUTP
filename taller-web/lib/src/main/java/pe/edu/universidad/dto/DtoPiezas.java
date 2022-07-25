@@ -1,6 +1,8 @@
 package pe.edu.universidad.dto;
 
-public class DtoPiezas {
+import java.io.Serializable;
+
+public class DtoPiezas implements Serializable{
 	private String id;
 	private String piezas;
 	private String categoria;

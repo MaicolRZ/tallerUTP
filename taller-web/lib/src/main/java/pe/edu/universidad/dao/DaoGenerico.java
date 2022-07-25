@@ -1,6 +1,8 @@
 package pe.edu.universidad.dao;
 
+import java.beans.Statement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.Context;
@@ -23,4 +25,6 @@ public class DaoGenerico {
 		}
 		return cnx;
 	}
+	
+	
 }

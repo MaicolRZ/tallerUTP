@@ -8,7 +8,7 @@
 <%@ page import="pe.edu.universidad.entidades.*"%>
 <%@ page import="pe.edu.universidad.servlet.*"%>
 	<%@ page import="java.util.List"%>
-<%@ include file="/header.jsp" %>
+
 
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/estilos.css">

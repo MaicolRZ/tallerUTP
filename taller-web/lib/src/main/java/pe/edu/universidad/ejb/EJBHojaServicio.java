@@ -27,10 +27,10 @@ public class EJBHojaServicio {
      * Default constructor. 
      */
 	
-	public List<DtoHojaServicio> consultarTecnicoPorId(String id_tecnico) {
+	public List<DtoHojaServicio> consultarTecnicoPorId(String id_tecnico,String id_cliente) {
     	List<DtoHojaServicio> lst = null;
     	DaoCliente dao = new DaoCliente();
-    	lst = dao.consultarTecnicoPorId(id_tecnico);
+    	lst = dao.consultarTecnicoPorId(id_tecnico,id_cliente);
     	return lst;
     }
 	/** 

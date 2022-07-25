@@ -21,7 +21,9 @@
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
 					<img src="../assets/img/avatar.jpg" alt="UserIcon">
-					<figcaption class="text-center text-titles">Encargado</figcaption>
+					<figcaption class="text-center text-titles">${lstNombresCompletos}</figcaption>
+					<figcaption class="text-center text-titles">${LstAdmin}</figcaption>
+					<figcaption class="text-center text-titles">Administrador</figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
 					<li>
@@ -30,7 +32,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="../index.jsp" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -39,7 +41,7 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="../home.jsp">
+					<a href="home.jsp">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
 					</a>
 				</li>
@@ -81,21 +83,21 @@
 						</li>
 					</ul>
 				</li>
+
 				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Reportes <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
 					<ul class="list-unstyled full-box">
 						<li>
-							<a href="reporteTecnico.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Reportes Tecnico</a>
+							<a href="../Reportes/reporteTecnico.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Reportes Tecnico</a>
 						</li>
 						<li>
-							<a href="reporteCliente.jsp"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Reportes Cliente</a>
+							<a href="../Reportes/reporteCliente.jsp"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Reportes Cliente</a>
 						</li>
 						
 					</ul>
 				</li>
-				
 			</ul>
 		</div>
 	</section>

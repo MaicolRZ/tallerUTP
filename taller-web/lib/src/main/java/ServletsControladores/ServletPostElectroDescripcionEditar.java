@@ -37,14 +37,12 @@ public class ServletPostElectroDescripcionEditar extends HttpServlet {
 
 		DaoElectro dao = new DaoElectro();
 		dao.editarElectro(id_elec,descripcion,id_tecnico);
-	
 		
+
 		List<DtoAtencionTaller> lst =ejb2.imprimirPDF(id_elec);
+		
 		request.getSession().setAttribute("LstAtencionTallerPDF", lst);
 		request.getRequestDispatcher("ReportePDFAtencionTaller.jsp").forward(request, response);
-		
-		
-		
 		
 		
 	}

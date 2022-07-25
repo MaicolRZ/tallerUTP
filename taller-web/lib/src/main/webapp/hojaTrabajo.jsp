@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <jsp:include page="headerTecnico.jsp" />
+
 <title>Hoja trabajo</title>
 
 </head>
@@ -42,7 +44,7 @@
 			<div class="page-header">
 			  <h1 class="text-titles"><i class="zmdi zmdi-male-alt zmdi-hc-fw"></i>Hoja de Servicio<small></small></h1>
 			</div>
-			<p class="lead">Permite rellenar la hoja del servicio </p>
+			<p class="lead">Permite rellenar la hoja del Servicio </p>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -62,8 +64,9 @@
 											</div>
 									    	<form method="post" action="<%=request.getContextPath() %>/ServletPostHojaTrabajo">
 											<div class="form-group label-floating">
-											<label class="control-label">DNI Tecnico</label>
-											<input class="form-control" type="text" name="id_tecnico" required>
+											<label class="control-label">DNI Cliente</label>
+											<input class="hidden" type="text" name="id_tecnico" value="${LstTecnico}" required>
+											<input class="form-control" type="text" name="id_cliente"  required>
 											<input class="btn btn-info btn-raised btn-sm" type="submit" value="Buscar">
 											</div>
 											</form>
@@ -100,9 +103,10 @@
 											
 											<c:forEach items="${lstServiciosTecnico}" var="e">
 											<tr>
-											<td><c:out value="${e.id_elec}"></c:out></td>
+											<td><c:out value="${e.id_taller}"></c:out></td>
 											<td><c:out value="${e.dniPersona}"></c:out></td>
 											<td><c:out value="${e.nombresCompleto}"></c:out></td>
+											<td><c:out value="${e.id_elec}"></c:out></td>
 											<td><c:out value="${e.electrodomestico}"></c:out></td>
 											<td><c:out value="${e.marca}"></c:out></td>
 											<td><c:out value="${e.modelo}"></c:out></td>
@@ -114,7 +118,7 @@
 											<!-- Editar-->
 											<td>
 											
-											<a href="servletDetalles/servletPostHojaTrabajo.jsp?id=${e.id_elec}&dni=${e.dniPersona}&elec=${e.electrodomestico}&marca=${e.marca}&modelo=${e.modelo}&nserie=${e.numero_serie}"  class=" btn-raised btn-xs" >
+											<a href="servletDetalles/servletPostHojaTrabajo.jsp?id_elec=${e.id_elec}&dni=${e.dniPersona}&id_taller=${e.id_taller}"  class=" btn-raised btn-xs" >
 											<button>
 											<i class="zmdi zmdi-edit"></i>
 											</button>

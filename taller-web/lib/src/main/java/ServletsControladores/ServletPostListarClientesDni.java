@@ -38,6 +38,8 @@ public class ServletPostListarClientesDni extends HttpServlet {
 		String id_cliente = request.getParameter("id_cliente");
 
 		List<DtoAtencionTaller> lst =ejb2.consultarPersonaporID(id_cliente);
+		
+		
 		request.getSession().setAttribute("LstDniClientes", lst);
 		request.getRequestDispatcher("atencionTaller.jsp").forward(request, response);
 	}

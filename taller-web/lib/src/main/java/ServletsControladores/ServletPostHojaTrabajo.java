@@ -36,8 +36,10 @@ public class ServletPostHojaTrabajo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id_tecnico = request.getParameter("id_tecnico");
-
-		List<DtoHojaServicio> lst =ejb.consultarTecnicoPorId(id_tecnico);
+		String id_cliente = request.getParameter("id_cliente");
+		
+		
+		List<DtoHojaServicio> lst =ejb.consultarTecnicoPorId(id_tecnico,id_cliente);
 		request.getSession().setAttribute("lstServiciosTecnico", lst);
 		request.getRequestDispatcher("hojaTrabajo.jsp").forward(request, response);
 	}

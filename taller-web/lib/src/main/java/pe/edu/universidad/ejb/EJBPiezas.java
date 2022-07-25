@@ -5,8 +5,11 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
+
 import pe.edu.universidad.dao.DaoPiezas;
+
 import pe.edu.universidad.dto.DtoPiezas;
+import pe.edu.universidad.dto.DtoListaPiezas;
 
 /**
  * Session Bean implementation class EJBMatriculas
@@ -31,6 +34,13 @@ public class EJBPiezas {
     	List<DtoPiezas> lst = null;
     	DaoPiezas dao = new DaoPiezas();
     	lst = dao.ListarPiezas();
+    	return lst;
+    }
+	
+	public List<DtoListaPiezas> listarPorNombrePieza() {
+    	List<DtoListaPiezas> lst = null;
+    	DaoPiezas dao2 = new DaoPiezas();
+    	//lst = dao2.listarPorNombrePieza();
     	return lst;
     }
 	/** 

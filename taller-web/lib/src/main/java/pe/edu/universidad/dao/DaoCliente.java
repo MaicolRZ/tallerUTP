@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.edu.universidad.dto.DtoAtencionTaller;
+import pe.edu.universidad.dto.DtoAtencionTallerCotizacion;
 import pe.edu.universidad.dto.DtoHojaServicio;
 import pe.edu.universidad.entidades.Cliente;
 import pe.edu.universidad.entidades.Visita_Tecnica;
@@ -293,28 +294,42 @@ public class DaoCliente extends DaoGenerico {
 
 	
 	
-	// Listar foreach con DTO y EJB//
-	public List<DtoHojaServicio> consultarTecnicoPorId(String id_tecnico) {
+	// Listar foreach con DTO y EJB Hoja de Trabajo//
+	
+	public List<DtoHojaServicio> consultarTecnicoPorId(String id_tecnico,String id_cliente) {
 		List<DtoHojaServicio> lst = new ArrayList<DtoHojaServicio>();
 		DtoHojaServicio c = null;
-		String sql = "select id_elec, persona.dni,nombre || ' ' || apell_pat || ' ' || apell_mat, tipo_electrodomestico, marca, modelo,numero_serie, descripcion,tecnico_id from persona inner join visita_electrodomestico on persona.dni=visita_electrodomestico.dni where tecnico_id=?";
+		String sql = "select id_taller, id_tecnico,persona.dni,nombre || ' ' || apell_pat || ' ' || apell_mat, electrodomestico.id_electrodomestico, tipo_electrodomestico, "
+				+ " marca, modelo,numero_serie, descripcion, estado "
+				+ " from taller_servicio "
+				+ " inner join electrodomestico "
+				+ " on taller_servicio.id_electrodomestico=electrodomestico.id_electrodomestico "
+				+ " inner join persona "
+				+ " on persona.dni= electrodomestico.dni "
+				+ " where id_tecnico= ? "
+				+ " and persona.dni= ? and taller_servicio.estado='Pendiente' ";
 		Connection cnx = getConnection();
 		ResultSet rs;
 		try {
 			PreparedStatement stm = cnx.prepareStatement(sql);
 			stm.setString(1, id_tecnico);
+			stm.setString(2, id_cliente);
+			
 			rs = stm.executeQuery();
 			while (rs.next()) {
 				c = new DtoHojaServicio();
-				c.setId_elec(rs.getString(1));
-				c.setDniPersona(rs.getString(2));
-				c.setNombresCompleto(rs.getString(3));
-				c.setElectrodomestico(rs.getString(4));
-				c.setMarca(rs.getString(5));
-				c.setModelo(rs.getString(6));
-				c.setNumero_serie(rs.getString(7));
-				c.setDescripcion(rs.getString(8));
-				c.setDniTecnico(rs.getString(9));
+				
+				c.setId_taller(rs.getString(1));
+				c.setId_tecnico(rs.getString(2));
+				c.setDniPersona(rs.getString(3));
+				c.setNombresCompleto(rs.getString(4));
+				c.setId_elec(rs.getString(5));
+				c.setElectrodomestico(rs.getString(6));
+				c.setMarca(rs.getString(7));
+				c.setModelo(rs.getString(8));
+				c.setNumero_serie(rs.getString(9));
+				c.setDescripcion(rs.getString(10));
+				c.setEstado(rs.getString(11));
 				
 				
 				lst.add(c);
@@ -327,10 +342,16 @@ public class DaoCliente extends DaoGenerico {
 	}
 	
 	
+	
 	public List<DtoAtencionTaller> consultarPersonaporID(String id_cliente) {
 		List<DtoAtencionTaller> lst2 = new ArrayList<DtoAtencionTaller>();
 		DtoAtencionTaller a = null;
-		String sql = "select persona.dni,electrodomestico.id_electrodomestico,nombre || ' ' || apell_pat || ' ' || apell_mat, electrodomestico.marca, electrodomestico.tipo_electrodomestico, electrodomestico.modelo, electrodomestico.numero_serie from persona inner join electrodomestico on electrodomestico.dni = persona.dni where persona.dni=? and electrodomestico.descripcion is null";
+		String sql = "select persona.dni,electrodomestico.id_electrodomestico,nombre || ' ' || apell_pat || ' ' || apell_mat, "
+				+ " electrodomestico.marca, electrodomestico.tipo_electrodomestico, electrodomestico.modelo, "
+				+ " electrodomestico.numero_serie from persona "
+				+ " inner join electrodomestico "
+				+ " on electrodomestico.dni = persona.dni "
+				+ " where persona.dni=? and electrodomestico.descripcion is null ";
 		Connection cnx = getConnection();
 		ResultSet rs;
 		try {
@@ -348,6 +369,42 @@ public class DaoCliente extends DaoGenerico {
 				a.setNumero_serie(rs.getString(7)); 
 
 				
+				lst2.add(a);
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		return lst2;
+	}
+	public List<DtoAtencionTallerCotizacion> AtencionTallerCotizacion(String id_cliente) {
+		List<DtoAtencionTallerCotizacion> lst2 = new ArrayList<DtoAtencionTallerCotizacion>();
+		DtoAtencionTallerCotizacion a = null;
+		String sql = "select persona.dni,electrodomestico.id_electrodomestico,nombre || ' ' || apell_pat || ' ' || apell_mat, electrodomestico.marca "
+				+ " , electrodomestico.tipo_electrodomestico, electrodomestico.modelo, electrodomestico.numero_serie, estado, taller_servicio.id_taller "
+				+ " from persona "
+				+ " inner join electrodomestico "
+				+ " on electrodomestico.dni = persona.dni "
+				+ " inner join taller_servicio "
+				+ " on electrodomestico.id_electrodomestico = taller_servicio.id_electrodomestico "
+				+ " where persona.dni like '%"+id_cliente+"%' and estado='En Espera' ";
+		Connection cnx = getConnection();
+		ResultSet rs;
+		try {
+			PreparedStatement stm = cnx.prepareStatement(sql);
+			
+			rs = stm.executeQuery();
+			while (rs.next()) {
+				a = new DtoAtencionTallerCotizacion();
+				a.setDni_persona(rs.getString(1));
+				a.setId_electro(rs.getString(2));
+				a.setNombresCompleto(rs.getString(3));
+				a.setMarca(rs.getString(4));
+				a.setTipo_electrodomestico(rs.getString(5));
+				a.setModelo(rs.getString(6));
+				a.setNumero_serie(rs.getString(7));
+				a.setEstado(rs.getString(8));
+				a.setId_taller(rs.getString(9)); 
 				lst2.add(a);
 			}
 			cnx.close();

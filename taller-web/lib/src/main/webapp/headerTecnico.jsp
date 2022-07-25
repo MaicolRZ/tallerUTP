@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head> 
-
+<%@ page import="pe.edu.universidad.dao.*"%>
 <title>Tecnico Taller UTP</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<link rel="stylesheet" href="css/main.css">
 
 </head>
+<body>
 
 <section class="full-box cover dashboard-sideBar">
 		<div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
@@ -21,7 +22,8 @@
 			<div class="full-box dashboard-sideBar-UserInfo">
 				<figure class="full-box">
 					<img src="./assets/img/avatar.jpg" alt="UserIcon">
-					<figcaption class="text-center text-titles">User Name</figcaption>
+					<figcaption class="text-center text-titles">${lstNombresCompletos}</figcaption>
+					<figcaption class="text-center text-titles">${LstTecnico}</figcaption>
 					<figcaption class="text-center text-titles">TECNICO</figcaption>
 				</figure>
 				<ul class="full-box list-unstyled text-center">
@@ -31,7 +33,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#!" class="btn-exit-system">
+						<a href="index.jsp" class="btn-exit-system">
 							<i class="zmdi zmdi-power"></i>
 						</a>
 					</li>
@@ -40,7 +42,7 @@
 			<!-- SideBar Menu -->
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu">
 				<li>
-					<a href="home.jsp">
+					<a href="headerTecnico.jsp">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Dashboard
 					</a>
 				</li>
@@ -52,11 +54,12 @@
 						<li>
 							<a href="hojaTrabajo.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Hoja de Trabajo</a>
 						</li>
-						<li>
-							<a href="subject.html"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Horarios Visita Domicilio</a>
-						</li>
+					
 						<li>
 							<a href="atencionTaller.jsp"><i class="zmdi zmdi-graduation-cap zmdi-hc-fw"></i> Atencion en el Taller</a>
+						</li>
+						<li>
+							<a href="EstadoCotizacion.jsp"><i class="zmdi zmdi-timer zmdi-hc-fw"></i>Cotizacion</a>
 						</li>
 						
 					</ul>

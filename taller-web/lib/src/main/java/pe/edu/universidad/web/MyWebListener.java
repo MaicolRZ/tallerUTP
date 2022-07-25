@@ -6,9 +6,17 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import pe.edu.universidad.dao.*;
+import pe.edu.universidad.dao.DaoCliente;
+import pe.edu.universidad.dao.DaoElectro;
+import pe.edu.universidad.dao.DaoHorarios;
+import pe.edu.universidad.dao.DaoPiezas;
+import pe.edu.universidad.dao.DaoUsuario;
+import pe.edu.universidad.dto.DtoHorarios;
 import pe.edu.universidad.dto.DtoPiezas;
-import pe.edu.universidad.entidades.*;
+import pe.edu.universidad.entidades.Cliente;
+import pe.edu.universidad.entidades.Electro;
+import pe.edu.universidad.entidades.Usuario;
+import pe.edu.universidad.entidades.Visita_Tecnica;
 
 
 
@@ -18,6 +26,7 @@ public class MyWebListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		ServletContextListener.super.contextInitialized(sce);
+		
 		System.out.println("OJO: contextInitialized");
 		//Tecnicos
 		DaoUsuario dao = new DaoUsuario();
@@ -38,6 +47,13 @@ public class MyWebListener implements ServletContextListener {
 		DaoElectro dao4 = new DaoElectro();
 		List<Electro> lst6 = dao4.listarElectrodomesticos();
 		sce.getServletContext().setAttribute("lstElectros", lst6);
+		
+		DaoHorarios dao5 = new DaoHorarios();
+		List<DtoHorarios> lst7 = dao5.listarHorarios();
+		
+		sce.getServletContext().setAttribute("lstHorarios", lst7);
+		
+		
 		
 
 	}

@@ -11,23 +11,19 @@
 <%@ page import="pe.edu.universidad.entidades.*"%>
 <%@ page import="pe.edu.universidad.servlet.*"%>
 	<%@ page import="java.util.List"%>
+	<%@ page import="ServletsControladores.*"%>
 </head>
 <body>
 <% 
 int dni=Integer.parseInt(request.getParameter("dni"));
-
+String elec=request.getParameter("id_elec");
+String id_taller=request.getParameter("id_taller");
 DaoCliente dao= new DaoCliente();
 Cliente p=(Cliente)dao.lista(dni); 
-
+DaoElectro dao2 = new DaoElectro();
+Electro e=(Electro)dao2.lista(elec);
 %>
 
-<%
-String id=request.getParameter("id");
-String elec=request.getParameter("elec");
-String marca=request.getParameter("marca");
-String modelo=request.getParameter("modelo");
-String nserie=request.getParameter("nserie");
-%>
 <!-- Content page-->
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
@@ -85,15 +81,15 @@ String nserie=request.getParameter("nserie");
 											
 											<div class="form-group label-floating">
 											  <label class="control-label">Nombres Completos</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=p.getNombre()%> <%=p.getApell_pat()%> <%=p.getApell_mat()%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=p.getNombre()%> <%=p.getApell_pat()%> <%=p.getApell_mat()%>" readonly>
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Direccion</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=p.getDireccion()%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=p.getDireccion()%>" readonly>
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Telefono</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=p.getTelefono()%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=p.getTelefono()%>" readonly>
 											</div>
 											</td>
 											<td>
@@ -101,48 +97,70 @@ String nserie=request.getParameter("nserie");
 											
 											<div class="form-group label-floating">
 											  <label class="control-label">Electrodomestico</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=elec%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=elec%>" readonly>
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Marca</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=marca%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=e.getMarca()%>" readonly>
 											</div>
 											<div class="form-group label-floating">
 											  <label class="control-label">Modelo</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=modelo%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=e.getModelo()%>" readonly>
 											</div>
 											  
 											  <div class="form-group label-floating">
 											  <label class="control-label">N° Serie</label>
-											  <input class="form-control" type="text" name ="nombre" value="<%=nserie%>" readonly>
+											  <input class="form-control" type="text" name ="a" value="<%=e.getNumero_Serie()%>" readonly>
 											</div>
+											<div class="form-group label-floating">
+											  <label class="control-label">Descripcion Fallo </label>
+											  <input class="form-control" type="text" name ="a" value="<%=e.getDescripcion()%>" readonly>
+											</div> 
 											</td>
 											</tr>
 											</table>
-											<form method="post" action="<%=request.getContextPath() %>/ServletPostHojaTrabajo">
-											<div class="form-group label-floating">
-											<label class="control-label">DNI Tecnico</label>
-											<input class="form-control" type="text" name="id_tecnico" value ="${e.electrodomestico}"required>
-											<input class="btn btn-info btn-raised btn-sm" type="submit" value="Buscar">
-											</div>
+												
 											
+										
 											
-											<select name="tecnico_id" required>
-											<c:forEach items="${applicationScope.lstPiezas}" var="p">
-											<option value="${p.id}">${p.piezas} ${p.categoria} ${p.precio*10}  ${p.stock}</option>
-
-											</c:forEach>
-											</select>
-											</form>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Lista de Tecnicos-->
 						
 						
 						
-					  	
+					  	<form method="post" action="<%=request.getContextPath() %>/SrvHojaServicio">
+											
+											<label class="control-label"></label>
+											<input class="form-control" type="hidden" name="id_taller" value ="<%=id_taller%>" readonly>
+											
+											
+
+							
+								<p>Seleccionar Servicios Brindados</p>
+								<div class="form-group">
+										        <label class="control-label">Actividades</label>
+										        <select class="form-control" name="id_actividades"required>
+										          <option value="ACT_01">Diagnostico</option>
+										          <option value="ACT_02">Mantenimiento Preventivo</option>
+										          <option value="ACT_03">Reparacion</option>
+										        </select>
+										    </div>
+								
+							
+							<div class="form-group label-floating">
+											  <label class="control-label">Descripcion Servicios Brindados</label>
+											  <input class="form-control" type="text" name="descripcion" required >
+											</div>
+											
+											
+											
+											<input class="btn btn-info btn-raised btn-sm" type="submit" value="Registrar">
+											
+											
+							</form>
+											
 					  		
 					  	</div>
 					  	
@@ -151,5 +169,16 @@ String nserie=request.getParameter("nserie");
 			</div>
 		
 	</section>
+	<!--====== Scripts -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js" ></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" ></script>
+	<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js" ></script>
+	<script src="./js/main2.js)"></script>
+	<script>
+	$(document).ready(function(){
+		
+	    $('#tabla3').DataTable();
+	});
+	</script>
 </body>
 </html>
